@@ -8,10 +8,14 @@ usage() {
 # Check for command availability
 check_command() {
     if ! command -v $1 &> /dev/null; then
-        echo "$1 could not be found, please install it."
+        echo "$1 could not be found, please install it first."
         exit 1
     fi
 }
+
+###################################################
+#                from PNG                         #
+###################################################
 
 png2ico() {
     [ $# -ge 1 ] || { usage "png2ico"; return 1; }
@@ -27,6 +31,33 @@ png2jpg() {
     convert "$1" "$output"
 }
 
+###################################################
+#                from JPG                         #
+###################################################
+
+jpg2png() {
+    [ $# -ge 1 ] || { usage "jpg2png"; return 1; }
+    check_command convert
+    local output=${2:-${1%.jpg}.png}
+    convert "$1" "$output"
+}
+
+###################################################
+#                from webp                        #
+###################################################
+
+webp2png() {
+    [ $# -ge 1 ] || { usage "webp2png"; return 1; }
+    check_command dwebp
+    local output=${2:-${1%.webp}.png}
+    dwebp "$1" -o "$output"
+}
+
+###################################################
+#                from PDF                         #
+###################################################
+
+
 pdf2png() {
     [ $# -ge 1 ] || { usage "pdf2png"; return 1; }
     check_command pdftoppm
@@ -39,4 +70,23 @@ pdf2jpg() {
     check_command convert
     local output=${2:-${1%.pdf}.jpg}
     convert -density 300 "$1" -quality 100 "$output"
+}
+
+
+###################################################
+#                from md                          #
+###################################################
+
+md2pdf() {
+    [ $# -ge 1 ] || { usage "md2pdf"; return 1; }
+    check_command pandoc
+    local output=${2:-${1%.md}.pdf}
+    pandoc "$1" -o "$output"
+}
+
+md2html() {
+    [ $# -ge 1 ] || { usage "md2html"; return 1; }
+    check_command pandoc
+    local output=${2:-${1%.md}.html}
+    pandoc "$1" -o "$output"
 }
