@@ -2,35 +2,6 @@
 
 Welcome to the Shell Converter Toolkit! This bash script provides a set of simple, yet powerful command-line functions for converting images and PDF files into different formats.
 
-## Features 🌟
-
-- Convert PNG images to ICO format
-- Convert PNG images to JPG format
-- Convert PDF documents to PNG images
-- Convert PDF documents to JPG images
-- ... more to come!
-
-Here's a README.md template for your GitHub project that incorporates the improved bash script for file conversions:
-
-## Prerequisites 📋
-
-Before you start using the File Converter Toolkit, make sure you have the following installed:
-
-- ImageMagick (for `convert` command)
-- Poppler-utils (for `pdftoppm` command)
-
-```bash
-sudo apt-get install imagemagick poppler-utils
-```
-
-## Installation 🚀
-
-Simply source this script in your `bashrc`:
-
-```bash
-source /path/to/shell_converter.sh
-```
-
 ## Usage 📖
 
 ### PNG to ICO
@@ -56,6 +27,26 @@ pdf2png document.pdf
 ```sh
 pdf2jpg document.pdf
 ```
+
+## Prerequisites 📋
+
+Before you start using the File Converter Toolkit, make sure you have the following installed:
+
+- ImageMagick (for `convert` command)
+- Poppler-utils (for `pdftoppm` command)
+
+```bash
+sudo apt-get install imagemagick poppler-utils
+```
+
+## Installation 🚀
+
+Simply source this script in your `bashrc`:
+
+```bash
+source /path/to/shell_converter.sh
+```
+
 
 ## Contributions Welcome! 🤝
 
