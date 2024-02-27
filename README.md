@@ -35,7 +35,7 @@ pdf2jpg document.pdf
 As simple as adding this line to your bashrc/zshrc/whatever:
 
 ```bash
-source /path/to/shell_converter.sh
+source /path/to/shell_file_converters.sh
 ```
 
 ## Contributions Welcome! 🤝
