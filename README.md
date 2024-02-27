@@ -1,15 +1,8 @@
-# Shell File Converter 🛠️
-Stop using sites like https://png2ico.com, https://pdf2png.com, and so on. You have always been able to do this in your terminal, and with this script, you won't have to memorize any of the commands! This toolkit is a collection of shell scripts that allows you to convert files from one format to another in an obvious way.
+# Shell File Converters 🛠️
+A collection of file conversion wrappers with obvious names.
 
-## Installation 🚀
-
-Add this to your bashrc/zshrc/whatever:
-
-```bash
-source /path/to/shell_converter.sh
-```
-
-## Usage 📖
+Stop using sites like https://png2ico.com, https://pdf2png.com, etc. You've always been able to do this in your terminal.
+Only this time you won't have to memorize any of the commands!
 
 ### PNG to ICO
 
@@ -36,6 +29,14 @@ pdf2jpg document.pdf
 ```
 
 ... and many more.
+
+## Installation 🚀
+
+As simple as adding this line to your bashrc/zshrc/whatever:
+
+```bash
+source /path/to/shell_converter.sh
+```
 
 ## Contributions Welcome! 🤝
 
