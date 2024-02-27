@@ -1,19 +1,20 @@
 #!/bin/bash
 
-# Function to display _usage
-_usage() {
+# Function to display Usage
+_sfc_usage() {
     echo "Usage: $1 <input_filename> [output_filename]"
 }
 
 # Check for command availability
-_check_command() {
+_sfc_check_command() {
     if ! command -v $1 &> /dev/null; then
         echo "$1 could not be found, please install it first."
         exit 1
     fi
 }
 
-_confirm_overwrite() {
+# Confirm overwriting existing file, if any
+_sfc_confirm() {
     if [ -f "$1" ]; then
         while true; do
             echo -n "File $1 exists. Do you want to overwrite it? (y/n) "
@@ -32,16 +33,16 @@ _confirm_overwrite() {
 ###################################################
 
 png2ico() {
-    [ $# -ge 1 ] || { _usage "png2ico"; return 1; }
-    _check_command convert
+    [ $# -ge 1 ] || { _sfc_usage "png2ico"; return 1; }
+    _sfc_check_command convert
     local output=${2:-${1%.png}.ico}
-    _confirm_overwrite "$output"
+    _sfc_confirm "$output"
     convert "$1" -resize 256x256 "$output"
 }
 
 png2jpg() {
-    [ $# -ge 1 ] || { _usage "png2jpg"; return 1; }
-    _check_command convert
+    [ $# -ge 1 ] || { _sfc_usage "png2jpg"; return 1; }
+    _sfc_check_command convert
     local output=${2:-${1%.png}.jpg}
     convert "$1" "$output"
 }
@@ -51,10 +52,10 @@ png2jpg() {
 ###################################################
 
 jpg2png() {
-    [ $# -ge 1 ] || { _usage "jpg2png"; return 1; }
-    _check_command convert
+    [ $# -ge 1 ] || { _sfc_usage "jpg2png"; return 1; }
+    _sfc_check_command convert
     local output=${2:-${1%.jpg}.png}
-    _confirm_overwrite "$output"
+    _sfc_confirm "$output"
     convert "$1" "$output"
 }
 
@@ -63,10 +64,10 @@ jpg2png() {
 ###################################################
 
 webp2png() {
-    [ $# -ge 1 ] || { _usage "webp2png"; return 1; }
-    _check_command dwebp
+    [ $# -ge 1 ] || { _sfc_usage "webp2png"; return 1; }
+    _sfc_check_command dwebp
     local output=${2:-${1%.webp}.png}
-    _confirm_overwrite "$output"
+    _sfc_confirm "$output"
     dwebp "$1" -o "$output"
 }
 
@@ -74,20 +75,19 @@ webp2png() {
 #                from PDF                         #
 ###################################################
 
-
 pdf2png() {
-    [ $# -ge 1 ] || { _usage "pdf2png"; return 1; }
-    _check_command pdftoppm
+    [ $# -ge 1 ] || { _sfc_usage "pdf2png"; return 1; }
+    _sfc_check_command pdftoppm
     local output=${2:-${1%.pdf}}
-    _confirm_overwrite "$output"
+    _sfc_confirm "$output"
     pdftoppm -png "$1" "$output"
 }
 
 pdf2jpg() {
-    [ $# -ge 1 ] || { _usage "pdf2jpg"; return 1; }
-    _check_command convert
+    [ $# -ge 1 ] || { _sfc_usage "pdf2jpg"; return 1; }
+    _sfc_check_command convert
     local output=${2:-${1%.pdf}.jpg}
-    _confirm_overwrite "$output"
+    _sfc_confirm "$output"
     convert -density 300 "$1" -quality 100 "$output"
 }
 
@@ -97,17 +97,17 @@ pdf2jpg() {
 ###################################################
 
 md2pdf() {
-    [ $# -ge 1 ] || { _usage "md2pdf"; return 1; }
-    _check_command pandoc
+    [ $# -ge 1 ] || { _sfc_usage "md2pdf"; return 1; }
+    _sfc_check_command pandoc
     local output=${2:-${1%.md}.pdf}
-    _confirm_overwrite "$output"
+    _sfc_confirm "$output"
     pandoc "$1" -o "$output"
 }
 
 md2html() {
-    [ $# -ge 1 ] || { _usage "md2html"; return 1; }
-    _check_command pandoc
+    [ $# -ge 1 ] || { _sfc_usage "md2html"; return 1; }
+    _sfc_check_command pandoc
     local output=${2:-${1%.md}.html}
-    _confirm_overwrite "$output"
+    _sfc_confirm "$output"
     pandoc "$1" -o "$output"
 }
