@@ -1,0 +1,10 @@
+# idea
+.idea
+.ccls-cache
+
+# tmp files
+*~
+
+# vim
+[._]*.sw[a-p]
+tags
