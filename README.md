@@ -22,17 +22,11 @@ png2jpg input.png
 pdf2png document.pdf
 ```
 
-### PDF to JPG
-
-```sh
-pdf2jpg document.pdf
-```
-
-... and many more.
+... and so on, see [shell_converters_generator.py](shell_converters_generator.py)
 
 ## Installation 🚀
 
-As simple as adding this line to your bashrc/zshrc/whatever:
+As simple as adding this line to your bashrc:
 
 ```bash
 source /path/to/shell_file_converters.sh
