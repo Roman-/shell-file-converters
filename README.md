@@ -22,7 +22,7 @@ png2jpg input.png
 pdf2png document.pdf
 ```
 
-... and so on, see [shell_converters_generator.py](shell_converters_generator.py)
+... and so on, see [generator.py](generator.py)
 
 ## Installation 🚀
 
