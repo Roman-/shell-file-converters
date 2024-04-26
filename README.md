@@ -4,20 +4,19 @@ A collection of file conversion wrappers with obvious names.
 Stop using sites like https://png2ico.com, https://pdf2png.com, etc. You've always been able to do this in your terminal.
 Only this time you won't have to memorize any of the commands!
 
-### PNG to ICO
+### Usage
 
+Convert single png image to ico
 ```sh
-png2ico input.png
+png2ico image1.png
 ```
 
-### PNG to JPG
-
+Convert all png files in current dir to JPG (does not affect original files)
 ```sh
-png2jpg input.png
+png2jpg *.png
 ```
 
-### PDF to PNG
-
+Convert document to image
 ```sh
 pdf2png document.pdf
 ```

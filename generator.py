@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # format1, format2, command, command_args
 converters = [
     # images
@@ -30,7 +32,7 @@ script_begin = """#!/bin/bash
 
 # Function to display Usage
 _sfc_usage() {
-    echo "Usage: $1 <input_filename> [output_filename]"
+    echo "Usage: $1 <input_filename> [input_filename_2 ...]"
 }
 
 # Check for command availability
@@ -62,9 +64,12 @@ typical bash function generated:
 png2jpg() {
     [ $# -ge 1 ] || { _sfc_usage "png2jpg"; return 1; }
     _sfc_check_command convert || return 1
-    local output=${2:-${1%.png}.jpg}
-    _sfc_confirm "$output" || return 1
-    convert "$1" "$output"
+    for input in "$@"; do
+        local output="${input%.png}.ico"
+        _sfc_confirm "$output" || return 1
+        convert "$input" -resize 256x256 "$output"
+    done
+
 }
 """
 print(script_begin)
@@ -72,8 +77,9 @@ for format1, format2, command, args in converters:
     print(f"{format1}2{format2}() {{")
     print(f'    [ $# -ge 1 ] || {{ _sfc_usage "{format1}2{format2}"; return 1; }}')
     print(f'    _sfc_check_command {command} || return 1')
-    print(f'    local output=${{2:-${{1%.{format1}}}.{format2}}}')
-    print(f'    _sfc_confirm "$output" || return 1')
-    print(f'    {command} {args}')
+    print(f'    for input in "$@"; do')
+    print(f'        local output=${{input%.{format1}}}.{format2}')
+    print(f'        _sfc_confirm "$output" || return 1')
+    print(f'        {command} {args}')
+    print(f'    done')
     print(f'}}\n')
-
