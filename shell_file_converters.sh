@@ -219,3 +219,23 @@ wav2mp3() {
     done
 }
 
+ogg2mp3() {
+    [ $# -ge 1 ] || { _sfc_usage "ogg2mp3"; return 1; }
+    _sfc_check_command ffmpeg || return 1
+    for input in "$@"; do
+        local output=${input%.ogg}.mp3
+        _sfc_confirm "$output" || return 1
+        ffmpeg -i "$1" "$output"
+    done
+}
+
+ogg2wav() {
+    [ $# -ge 1 ] || { _sfc_usage "ogg2wav"; return 1; }
+    _sfc_check_command ffmpeg || return 1
+    for input in "$@"; do
+        local output=${input%.ogg}.wav
+        _sfc_confirm "$output" || return 1
+        ffmpeg -i "$1" "$output"
+    done
+}
+

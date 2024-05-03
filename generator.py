@@ -25,6 +25,8 @@ converters = [
     ("flac", "wav",   "ffmpeg",      '-i "$1" "$output"'),
     ("mp3",  "wav",   "ffmpeg",      '-i "$1" "$output"'),
     ("wav",  "mp3",   "ffmpeg",      '-i "$1" -ab 192k "$output"'),
+    ("ogg",  "mp3",   "ffmpeg",      '-i "$1" "$output"'),
+    ("ogg",  "wav",   "ffmpeg",      '-i "$1" "$output"'),
 ]
 
 script_begin = """#!/bin/bash
